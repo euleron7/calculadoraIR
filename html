@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IRPF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Calculadora de imposto de renda: Simule seu IR abaixo</h1>
+
+    <form id="irrfForm" onsubmit="calcularIR(); return false;">
+        <p>Digite o Salário Bruto</p> 
+        <input type="number" name="sal" id="salarioBruto" required>
+        
+        <p>Gasto com pensão alimentícia</p> 
+        <input type="number" name="pens" id="pensaoAli">
+        
+        <p>Quantos dependentes você tem?</p> 
+        <input type="number" name="dep" id="dependentes">
+        
+        <p>Outras deduções</p> 
+        <input type="number" name="deduc" id="outrasDed">
+        
+        <button type="submit">Calcular</button>
+        <button type="button" onclick="limpar()">Limpar</button>
+
+        <div>
+            <p id="resultado"></p>
+        </div>
+    
+        <div>
+            <h3 id="valh3"></h3>
+            <p id="respensao"></p>
+            <p id="resdep"></p>
+            <p id="resoutrasded"></p>
+            <p id="resultado2"></p>
+        </div>
+        
+    </form>
+
+
+
+    <h2>Tabela IRRF</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Faixas</th>
+                <th>%</th>
+                <th>Deduções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>R$ 0,00 - 2.259,20</td>
+                <td>0,00%</td>
+                <td>R$ 0</td>
+            </tr>
+            <tr>
+                <td>R$ 2.259,21 - 2.826,65</td>
+                <td>7,50%</td>
+                <td>R$ 169,44</td>
+            </tr>
+            <tr>
+                <td>R$ 2.826,66 - 3.751,05</td>
+                <td>15,00%</td>
+                <td>R$ 381,44</td>
+            </tr>
+            <tr>
+                <td>R$ 3.751,06 - 4.664,68</td>
+                <td>22,50%</td>
+                <td>R$ 662,77</td>
+            </tr>
+            <tr>
+                <td>Acima de R$ 4.664,68</td>
+                <td>27,50%</td>
+                <td>R$ 896,00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>&copy; Euler Orbem</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
