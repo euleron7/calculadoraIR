@@ -1,0 +1,97 @@
+function calcularIR() {
+    const salarioBruto = document.getElementById('salarioBruto').value
+    const dependentes = parseFloat(document.getElementById('dependentes').value) || 0
+    const pensaoAli = parseFloat(document.getElementById('pensaoAli').value) || 0
+    const outrasDed = parseFloat(document.getElementById('outrasDed').value) || 0
+    var resultado = document.getElementById('resultado')
+    var resultado2 = document.getElementById('resultado2')
+    var respensao = document.getElementById('respensao')
+    var resdep = document.getElementById('resdep')
+    var resoutrasded = document.getElementById('resoutrasded')
+    var valh3 = document.getElementById('valh3')
+    
+    
+    const salarioBrutoFloat = parseFloat(salarioBruto)
+    let descontoINSS = 0
+
+    
+
+    const dependenteDeducao = 189.59
+
+    let calculodependentes = dependentes * dependenteDeducao
+
+    let deducoes = pensaoAli + (dependentes * dependenteDeducao) + outrasDed
+    let salarioBaseINSS = salarioBrutoFloat - deducoes
+
+    if (salarioBaseINSS <= 1412) {
+        descontoINSS = salarioBaseINSS * 0.075
+    } else if (salarioBaseINSS <= 2666.68) {
+        descontoINSS = (salarioBaseINSS - 1412) * 0.09 + 105.90
+    } else if (salarioBaseINSS <= 4000.03) {
+        descontoINSS = (salarioBaseINSS - 2666.69) * 0.12 + 218.82
+    } else if (salarioBaseINSS <= 7786.02) {
+        descontoINSS = (salarioBaseINSS - 4000.04) * 0.14 + 378.82
+    } else {
+        descontoINSS = 908.86
+    }
+
+    const salarioLiquido = salarioBaseINSS - descontoINSS
+
+
+    let impostoDevido = 0
+
+    if (salarioLiquido <= 2259.20) {
+        impostoDevido = 0;
+    } else if (salarioLiquido <= 2826.65) {
+        impostoDevido = (salarioLiquido * 0.075) - 169.44;
+    } else if (salarioLiquido <= 3751.05) {
+        impostoDevido = (salarioLiquido * 0.15) - 381.44;
+    } else if (salarioLiquido <= 4664.68) {
+        impostoDevido = (salarioLiquido * 0.225) - 662.77;
+    } else {
+        impostoDevido = (salarioLiquido * 0.275) - 896.00;
+    }
+
+    resultado.innerHTML = `O salário de R$ ${salarioBrutoFloat.toFixed(2)} receberá um desconto no INSS de R$ ${descontoINSS.toFixed(2)}.`
+    resultado.style.color = 'green'
+    resultado.style.fontSize = '15px'
+    resultado.style.textAlign = 'left'
+
+    valh3.innerHTML = 'Valores a deduzir: '
+
+    respensao.innerHTML = `Valor a deduzir de pensão alimentícia: R$ ${pensaoAli}.`
+    respensao.style.fontWeight = 'bold'
+    respensao.style.textDecoration = 'underline'
+
+    resdep.innerHTML = `Quantidade de dependentes: ${dependentes} x R$ 189,59 = R$ ${calculodependentes} `
+    resdep.style.fontWeight = 'bold'
+    resdep.style.textDecoration = 'underline'
+
+
+    resoutrasded.innerHTML = `Outras deduções: R$ ${outrasDed}`
+    resoutrasded.style.fontWeight = 'bold'
+    resoutrasded.style.textDecoration = 'underline'
+
+
+    resultado2.innerHTML = `Seu imposto devido é de: R$ ${impostoDevido.toFixed(2)}.`
+    resultado2.style.color = 'green'
+    resultado2.style.fontWeight = 'bold'
+    resultado2.style.fontSize = '18px'
+    resultado2.style.background = 'black'
+    resultado2.style.display = 'inline'
+}
+
+function limpar() {
+    document.getElementById('salarioBruto').value = ''
+    document.getElementById('pensaoAli').value = ''
+    document.getElementById('dependentes').value = ''
+    document.getElementById('outrasDed').value = ''
+    document.getElementById('resultado').innerHTML = ''
+    document.getElementById('respensao').innerHTML = ''
+    document.getElementById('resdep').innerHTML = ''
+    document.getElementById('resoutrasded').innerHTML = ''
+    document.getElementById('resultado2').innerHTML = ''
+    document.getElementById('valh3').innerHTML = ''
+    
+}
+
